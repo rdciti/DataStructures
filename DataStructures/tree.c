@@ -9,7 +9,7 @@ struct node
 
 struct stackNode
 {
-	struct stackNode* top;
+	struct node* treePointer;
 	struct stackNode* next;
 };
 
@@ -24,9 +24,9 @@ struct node* head = NULL;
 struct node* temp = NULL;
 struct node* prev = NULL;
 
-struct stackNode* q = NULL;
+struct stackNode* stack = NULL;
 struct stackNode* top = NULL;
-struct stackNode* np = NULL;
+struct stackNode* temp2 = NULL;
 
 int main()
 {
@@ -34,7 +34,7 @@ int main()
 
 	do
 	{
-		printf("enter your choice: \n 1. insert\n2. search\n3. traverse\n4. exit\n");
+		printf("enter your choice: \n1. insert\n2. search\n3. traverse\n4. exit\n");
 		scanf_s("%d", &choice);
 
 		switch (choice)
@@ -140,40 +140,47 @@ int search(int key)
 
 void traverse()
 {
-	push(head);
-
 	temp = head;
 
-	while (top != NULL)
+	while (1)
 	{
-		while (temp != NULL)
+		if (temp != NULL)
 		{
 			push(temp);
 			temp = temp->left;
 		}
-		if (top != NULL && temp == NULL)
+		else
 		{
-			temp = pop();
-			printf(" %d,", temp->data);
-			temp = temp->right;
+			if (top != NULL) //If stack is not empty then we pop out the elements
+			{
+				temp = pop();
+				printf("%d, ", temp->data);
+
+				temp = temp->right;
+			}
+			else
+			{
+				//When stack is empty, we come out of this loop
+				break;
+			}
 		}
 	}
 }
 
 void push(struct node* ptr)
 {
-	np = (struct stackNode*)malloc(sizeof(struct stackNode));
-	np->top = ptr;
-	np->next = NULL;
+	stack = (struct stackNode*)malloc(sizeof(struct stackNode));
+	stack->treePointer = ptr;
+	stack->next = NULL;
 	if (top == NULL)
 	{
-		top = np;
+		top = stack;
 	}
 	else
 	{
-		q = top;
-		top = np;
-		np->next = q;
+		temp2 = top;
+		top = stack;
+		stack->next = temp2;
 	}
 }
 
@@ -185,10 +192,8 @@ struct stackNode* pop()
 	}
 	else
 	{
-		q = top;
+		temp2 = top;
 		top = top->next;
-		return(q->top);
-		q = NULL;
-		free(q);
+		return(temp2->treePointer);
 	}
 }
