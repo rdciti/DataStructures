@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tree", "DataStructures\Data
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QUICK SORT", "QUICK SORT\QUICK SORT.vcxproj", "{484B3160-C124-4DE6-A60F-57EE638DFC2C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Preorder_traversal", "Preorder_traversal\Preorder_traversal.vcxproj", "{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{484B3160-C124-4DE6-A60F-57EE638DFC2C}.Release|x64.Build.0 = Release|x64
 		{484B3160-C124-4DE6-A60F-57EE638DFC2C}.Release|x86.ActiveCfg = Release|Win32
 		{484B3160-C124-4DE6-A60F-57EE638DFC2C}.Release|x86.Build.0 = Release|Win32
+		{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}.Debug|x64.ActiveCfg = Debug|x64
+		{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}.Debug|x64.Build.0 = Debug|x64
+		{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}.Debug|x86.ActiveCfg = Debug|Win32
+		{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}.Debug|x86.Build.0 = Debug|Win32
+		{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}.Release|x64.ActiveCfg = Release|x64
+		{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}.Release|x64.Build.0 = Release|x64
+		{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}.Release|x86.ActiveCfg = Release|Win32
+		{3ECADE16-B25B-4D0F-9FA8-F46DD676961B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,7 +30,7 @@ int search(int);
 
 void traverse();
 void push(struct node*);
-struct stackNode* pop();
+struct node* pop();
 
 
 int main()
@@ -66,8 +66,8 @@ int main()
 			break;
 
 		case 3:
-			printf("\n\nINORDER traversal: ");
-			traverse(head);
+			printf("\n\nPREORDER traversal: ");
+			traverse();
 
 		case 4:
 			printf("\n\nFreeing the memory\n\n");
@@ -148,27 +148,27 @@ void traverse()
 {
 	temp = head;
 
-	while (1)
+
+	while(1)
 	{
-		if (temp != NULL)
+		while (temp != NULL)
 		{
-			push(temp);
+			printf("%d, ", temp->data);
+
+			if (temp->right)
+			{
+				push(temp->right);
+			}
 			temp = temp->left;
+		}
+		
+		if (top != NULL)
+		{
+			temp = pop();
 		}
 		else
 		{
-			if (top != NULL) //If stack is not empty then we pop out the elements
-			{
-				temp = pop();
-				printf("%d, ", temp->data);
-
-				temp = temp->right;
-			}
-			else
-			{
-				//When stack is empty, we come out of this loop
-				break;
-			}
+			break;
 		}
 	}
 }
@@ -190,7 +190,7 @@ void push(struct node* ptr)
 	}
 }
 
-struct stackNode* pop()
+struct node* pop()
 {
 	if (top == NULL)
 	{
