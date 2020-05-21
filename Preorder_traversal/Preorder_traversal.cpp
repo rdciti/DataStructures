@@ -40,19 +40,19 @@ int main()
 	do
 	{
 		printf("enter your choice: \n1. insert\n2. search\n3. traverse\n4. exit\n");
-		scanf_s("%d", &choice);
+		scanf("%d", &choice);
 
 		switch (choice)
 		{
 		case 1:
 			printf("enter the element to insert: ");
-			scanf_s("%d", &num);
+			scanf("%d", &num);
 			createtree(num);
 			break;
 
 		case 2:
 			printf("enter the node to search:");
-			scanf_s("%d", &key);
+			scanf("%d", &key);
 			flag = search(key);
 
 			if (flag)
