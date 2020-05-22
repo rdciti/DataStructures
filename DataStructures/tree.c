@@ -1,42 +1,15 @@
 #include<stdio.h>
-#include<stdlib.h>
 
-struct node
-{
-	int data;
-	struct node* left, * right;
-};
+#include "myHeader.h"
 
 struct node* head = NULL;
 struct node* temp = NULL;
 struct node* prev = NULL;
 
-
-
-
-struct stackNode
-{
-	struct node* treePointer;
-	struct stackNode* next;
-};
-
-struct stackNode* stack = NULL;
-struct stackNode* top = NULL;
-struct stackNode* temp2 = NULL;
-
-
-void createtree(int);
-int search(int);
-
-void traverse();
-void push(struct node*);
-struct stackNode* pop();
-
-
 int main()
 {
 	int choice = 0, num, flag = 0, key;
-
+	//inOrderTraversal();
 	do
 	{
 		printf("enter your choice: \n1. insert\n2. search\n3. traverse\n4. exit\n");
@@ -45,6 +18,7 @@ int main()
 		switch (choice)
 		{
 		case 1:
+			//inorderTraversal();
 			printf("enter the element to insert: ");
 			scanf_s("%d", &num);
 			createtree(num);
@@ -66,7 +40,7 @@ int main()
 			break;
 
 		case 3:
-			printf("\n\nINORDER traversal: ");
+			printf("\n\nTraversals: ");
 			traverse(head);
 
 		case 4:
@@ -144,62 +118,16 @@ int search(int key)
 	return 0;
 }
 
-void traverse()
+void traverse(struct node* head)
 {
-	temp = head;
+	printf("\n\n");
 
-	while (1)
-	{
-		if (temp != NULL)
-		{
-			push(temp);
-			temp = temp->left;
-		}
-		else
-		{
-			if (top != NULL) //If stack is not empty then we pop out the elements
-			{
-				temp = pop();
-				printf("%d, ", temp->data);
+	printf("Inorder   Traversal -> ");
+	inOrderTraversal(head);
 
-				temp = temp->right;
-			}
-			else
-			{
-				//When stack is empty, we come out of this loop
-				break;
-			}
-		}
-	}
-}
+	printf("\nPreorder  Traversal -> ");
+	preOrderTraversal(head);
 
-void push(struct node* ptr)
-{
-	stack = (struct stackNode*)malloc(sizeof(struct stackNode));
-	stack->treePointer = ptr;
-	stack->next = NULL;
-	if (top == NULL)
-	{
-		top = stack;
-	}
-	else
-	{
-		temp2 = top;
-		top = stack;
-		stack->next = temp2;
-	}
-}
-
-struct stackNode* pop()
-{
-	if (top == NULL)
-	{
-		printf("underflow\n");
-	}
-	else
-	{
-		temp2 = top;
-		top = top->next;
-		return(temp2->treePointer);
-	}
+	printf("\nPostorder Traversal -> ");
+	postOrderTraversal(head);
 }
