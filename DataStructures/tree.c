@@ -9,7 +9,7 @@ struct node* prev = NULL;
 int main()
 {
 	int choice = 0, num, flag = 0, key;
-	//inOrderTraversal();
+	
 	do
 	{
 		printf("enter your choice: \n1. insert\n2. search\n3. traverse\n4. exit\n");
@@ -18,7 +18,6 @@ int main()
 		switch (choice)
 		{
 		case 1:
-			//inorderTraversal();
 			printf("enter the element to insert: ");
 			scanf_s("%d", &num);
 			createtree(num);
@@ -130,4 +129,7 @@ void traverse(struct node* head)
 
 	printf("\nPostorder Traversal -> ");
 	postOrderTraversal(head);
+
+	printf("\nBreadth First Search Traversal -> ");
+	bfsTraversal(head);
 }

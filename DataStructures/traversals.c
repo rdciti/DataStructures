@@ -4,6 +4,7 @@
 struct stackNode* stack = NULL;
 struct stackNode* top = NULL;
 struct stackNode* temp2 = NULL;
+struct node* queue = NULL;
 
 void inOrderTraversal(struct node *head)
 {
@@ -134,5 +135,38 @@ struct node* pop()
 		temp2 = top;
 		top = top->next;
 		return(temp2->treePointer);
+	}
+}
+
+void bfsTraversal(struct node* head)
+{
+	int rear = -1;
+	int front = -1;
+
+	queue = (struct node *)malloc(sizeof(struct node) * 10);
+
+	temp = head;
+
+	while(temp != NULL)
+	{
+		printf("%d, ", temp->data);
+
+		// Enqueue Left child
+		if(temp->left)
+		{
+			rear = rear + 1;
+			queue[rear] = temp->left;
+		}
+
+		//Enqueue Right Child
+		if(temp->right)
+		{
+			rear = rear + 1;
+			queue[rear] = temp->right;
+		}
+
+		//Dequeue and make the dequeued node as temp to print
+		front = front + 1;
+		temp = queue[front];
 	}
 }
