@@ -19,7 +19,6 @@ struct stackNode
 extern struct node* head;
 extern struct node* temp;
 extern struct node* prev;
-extern struct node* queue;
 
 extern struct stackNode* stack;
 extern struct stackNode* top;

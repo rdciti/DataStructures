@@ -4,7 +4,7 @@
 struct stackNode* stack = NULL;
 struct stackNode* top = NULL;
 struct stackNode* temp2 = NULL;
-struct node* queue = NULL;
+struct node* queue[10];
 
 void inOrderTraversal(struct node *head)
 {
@@ -142,8 +142,6 @@ void bfsTraversal(struct node* head)
 {
 	int rear = -1;
 	int front = -1;
-
-	queue = (struct node *)malloc(sizeof(struct node) * 10);
 
 	temp = head;
 
