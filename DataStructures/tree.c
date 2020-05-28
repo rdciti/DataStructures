@@ -9,10 +9,12 @@ struct node* prev = NULL;
 int main()
 {
 	int choice = 0, num, flag = 0, key;
+	int findMySuccessor, deleteMe;
 	
 	do
 	{
-		printf("enter your choice: \n1. insert\n2. search\n3. traverse\n4. exit\n");
+		printf("enter your choice: \n1. insert\n2. search\n3. traverse\n4. Inorder Successor\n"
+		"5. Delete a Node\n6 Exit\n");
 		scanf("%d", &choice);
 
 		switch (choice)
@@ -41,14 +43,27 @@ int main()
 		case 3:
 			printf("\n\nTraversals: ");
 			traverse(head);
-
+			break;
+		
 		case 4:
+			printf("\nEnter the node whose Inorder Successor is req: ");
+			scanf("%d", &findMySuccessor);
+			inorderSuccessor(head, findMySuccessor);
+			break;
+
+		case 5:
+			printf("\nEnter the node you want to delete: ");
+			scanf("%d", &deleteMe);
+			deleteNode(head, deleteMe);
+			break;
+
+		case 6:
 			printf("\n\nFreeing the memory\n\n");
 			head = NULL;
 			free(head);
 			break;
 		}
-	} while (choice != 4);
+	} while (choice != 6);
 
 	return 0;
 }
