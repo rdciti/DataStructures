@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include  "myHeader.h"
 
-int inorderSuccessor(struct node* head, int findMySuccessor)
+struct node* inorderSuccessor(struct node* head, int findMySuccessor)
 {
     //Find my address
     struct node* current = NULL;
@@ -24,7 +24,7 @@ int inorderSuccessor(struct node* head, int findMySuccessor)
         }
     }
     
-    if(current == NULL) return 1;
+    if(current == NULL) return current;
 
     /* Case 1: When Current Node has Right SubTree */
     if(current->right != NULL)
@@ -36,6 +36,7 @@ int inorderSuccessor(struct node* head, int findMySuccessor)
         }
 
         printf("\nThe successor is: %d\n", temp->data);
+        return temp;
     }
 
     /*Case 2: When there is no Right SubTree */
@@ -59,14 +60,15 @@ int inorderSuccessor(struct node* head, int findMySuccessor)
         }
 
         printf("\nThe successor is: %d\n", successor->data);
+        return successor;
     }
 
-    return 0;
 }
 
 int deleteNode(struct node* head, int deleteMe)
 {
     struct node* temp   = head;
+    struct node* temp3  = head;
     struct node* parent = NULL;
 
     while(temp!=NULL)
@@ -85,12 +87,80 @@ int deleteNode(struct node* head, int deleteMe)
         {
             break;
         }
-        
-        
     }
-    printf("\nDeleteMe: %d", deleteMe);
-    printf("\nParent: %d", parent->data);
-    printf("\nTemp: %d", temp->data);
+
+    // 3 cases of delete
+    //if node is a leaf
+    if (temp->right == NULL && temp->left == NULL)
+    {
+        if (temp->data > parent->data)
+        {
+            parent->right = NULL;
+        }
+        else
+        {
+            parent->left = NULL;
+        }
+
+        //Freeing the memory
+        free(temp);
+    }
+
+    //if node has onlyone child
+    else if (temp->right == NULL || temp->left == NULL)
+    {
+        if (temp->left != NULL) 
+        {
+            parent->left = temp->left;
+        }
+        else 
+        {
+            parent->right = temp->right;
+        }
+        free(temp);
+    }
+
+    //if node has two children
+    else if (temp->right != NULL && temp->left != NULL)
+    {
+        struct node* success = inorderSuccessor(head, deleteMe);
+
+        parent = NULL;
+        while (temp3 != NULL)
+        {
+            if (success->data > temp3->data)
+            {
+                parent = temp3;
+                temp3 = temp3->right;
+            }
+            else if(success->data < temp3->data)
+            {
+                parent = temp3;
+                temp3 = temp3->left;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (parent != NULL)
+        {
+            if (success == parent->left)
+            {
+                parent->left = NULL;
+            }
+            else if (success == parent->right)
+            {
+                parent->right = NULL;
+            }
+        }
+        
+        temp->data = success->data;
+
+        //Free the successor (and temp3) as its data has already been copied to temp
+        free(success);
+    }
 
     return 0;
 }

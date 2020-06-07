@@ -21,6 +21,9 @@
     <ClCompile Include="traversals.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="successor_and_deletion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myHeader.h">

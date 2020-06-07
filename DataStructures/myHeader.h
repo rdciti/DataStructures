@@ -18,6 +18,7 @@ struct stackNode
 
 extern struct node* head;
 extern struct node* temp;
+extern struct node* temp3;
 extern struct node* prev;
 
 extern struct stackNode* stack;
@@ -35,7 +36,7 @@ void inOrderTraversal(struct node*);
 void preOrderTraversal(struct node*);
 void postOrderTraversal(struct node*);
 void bfsTraversal(struct node*);
-int inorderSuccessor(struct node*, int);
+struct node* inorderSuccessor(struct node*, int);
 int deleteNode(struct node*, int);
 
 #endif // !INORDERFUNCTION_H_INCLUDED
