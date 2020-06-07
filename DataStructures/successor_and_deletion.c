@@ -144,17 +144,17 @@ int deleteNode(struct node* head, int deleteMe)
             }
         }
 
-        if (parent != NULL)
+        if (success == parent->left)
         {
-            if (success == parent->left)
-            {
-                parent->left = NULL;
-            }
-            else if (success == parent->right)
-            {
-                parent->right = NULL;
-            }
+            parent->left = success->left;
         }
+        else if (success == parent->right)
+        {
+            parent->right = success->right;
+        }
+
+
+        
         
         temp->data = success->data;
 

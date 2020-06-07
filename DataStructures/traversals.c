@@ -167,4 +167,5 @@ void bfsTraversal(struct node* head)
 		front = front + 1;
 		temp = queue[front];
 	}
+	printf("\n");
 }
