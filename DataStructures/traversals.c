@@ -67,41 +67,34 @@ void postOrderTraversal(struct node* head)
 {
 	temp = head;
 
-	while (1)
+	do
 	{
 		while (temp != NULL)
 		{
-			top = push(temp);
-
 			if (temp->right)
 			{
-				if (temp->left)
-				{
-					top = push(temp->right);
-					temp = temp->left;
-				}
-				else
-				{
-					temp = temp->right;
-				}
+				top = push(temp->right);
 			}
-			else
-			{
-				temp = temp->left;
-			}
+			top = push(temp);
+
+			//Move to the left child
+			temp = temp->left;
 		}
 
-		while (top != NULL)
+		temp = pop();
+
+		if(top != NULL && temp->right && top->treePointer == temp->right)
 		{
-			temp = pop();
+			pop();
+			push(temp);
+			temp = temp->right;
+		}
+		else
+		{
 			printf("%d, ", temp->data);
+			temp = NULL;
 		}
-		
-		if (top == NULL)
-		{
-			break;
-		}
-	}
+	} while (top != NULL);
 }
 
 struct stackNode* push(struct node* ptr)
