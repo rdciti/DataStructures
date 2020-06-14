@@ -147,6 +147,7 @@ void bfsTraversal(struct node* head)
 		{
 			rear = rear + 1;
 			queue[rear] = temp->left;
+			queue[rear + 1] = NULL;
 		}
 
 		//Enqueue Right Child
@@ -154,6 +155,7 @@ void bfsTraversal(struct node* head)
 		{
 			rear = rear + 1;
 			queue[rear] = temp->right;
+			queue[rear + 1] = NULL;
 		}
 
 		//Dequeue and make the dequeued node as temp to print
