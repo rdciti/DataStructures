@@ -65,7 +65,7 @@ struct node* inorderSuccessor(struct node* head, int findMySuccessor)
 
 }
 
-int deleteNode(struct node* head, int deleteMe)
+struct node* deleteNode(struct node* head, int deleteMe)
 {
     struct node* temp   = head;
     struct node* temp3  = head;
@@ -89,8 +89,14 @@ int deleteNode(struct node* head, int deleteMe)
         }
     }
 
+    if (temp == NULL)
+    {
+        printf("\n\nNode %d is not present in the tree\n\n", deleteMe);
+        return 0;
+    }
+
     // 3 cases of delete
-    //if node is a leaf
+    //1st case: if node is a leaf
     if (temp->right == NULL && temp->left == NULL)
     {
         if (temp->data > parent->data)
@@ -106,21 +112,35 @@ int deleteNode(struct node* head, int deleteMe)
         free(temp);
     }
 
-    //if node has onlyone child
+    //2md case: if node has onlyone child
     else if (temp->right == NULL || temp->left == NULL)
     {
         if (temp->left != NULL) 
         {
-            parent->left = temp->left;
+            if (parent != NULL)
+            {
+                parent->left = temp->left;
+            }
+            else
+            {
+                head = temp->left;
+            }
         }
         else 
         {
-            parent->right = temp->right;
+            if (parent != NULL)
+            {
+                parent->right = temp->right;
+            }
+            else
+            {
+                head = temp->right;
+            }
         }
         free(temp);
     }
 
-    //if node has two children
+    //3rd Case: if node has two children
     else if (temp->right != NULL && temp->left != NULL)
     {
         struct node* success = inorderSuccessor(head, deleteMe);
@@ -153,14 +173,12 @@ int deleteNode(struct node* head, int deleteMe)
             parent->right = success->right;
         }
 
-
-        
-        
         temp->data = success->data;
 
-        //Free the successor (and temp3) as its data has already been copied to temp
+        //Free the successor as its data has already been copied to temp
         free(success);
+
     }
 
-    return 0;
+    return head;
 }
