@@ -37,6 +37,6 @@ void preOrderTraversal(struct node*);
 void postOrderTraversal(struct node*);
 void bfsTraversal(struct node*);
 struct node* inorderSuccessor(struct node*, int);
-int deleteNode(struct node*, int);
+struct node* deleteNode(struct node*, int);
 
 #endif // !INORDERFUNCTION_H_INCLUDED

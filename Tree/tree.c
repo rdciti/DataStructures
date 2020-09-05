@@ -13,8 +13,8 @@ int main()
 	
 	do
 	{
-		printf("enter your choice: \n1. insert\n2. search\n3. traverse\n4. Inorder Successor\n"
-		"5. Delete a Node\n6 Exit\n");
+		printf("\n1. insert\n2. search\n3. traverse\n4. Inorder Successor\n"
+		"5. Delete a Node\n6 Exit\n\n Enter your choice: ");
 		scanf("%d", &choice);
 
 		switch (choice)
@@ -54,13 +54,17 @@ int main()
 		case 5:
 			printf("\nEnter the node you want to delete: ");
 			scanf("%d", &deleteMe);
-			deleteNode(head, deleteMe);
+			head = deleteNode(head, deleteMe);
 			break;
 
 		case 6:
 			printf("\n\nFreeing the memory\n\n");
 			head = NULL;
 			free(head);
+			break;
+
+		default:
+			printf("\nPlease enter a valid choice.\n");
 			break;
 		}
 	} while (choice != 6);
